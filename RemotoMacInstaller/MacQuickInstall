@@ -330,6 +330,19 @@ EOF
 
 chmod +x "$HOME/Desktop/Start Remoto.command"
 
+# Add aliases to ~/.zshrc
+echo "📝 Installing aliases..."
+cat >> ~/.zshrc << 'ALIASEOF'
+
+# Remoto aliases
+alias remoto-start='~/.remoto/start.sh'
+alias remoto-stop='~/.remoto/stop.sh'
+alias remoto-status='~/.remoto/status.sh'
+alias remoto-logs='tail -f ~/.remoto/logs/*.log | tail -50'
+alias remoto-autostart='~/.remoto/install-autostart.sh'
+
+ALIASEOF
+
 echo ""
 echo "╔════════════════════════════════════════════════╗"
 echo "║        ✅ Installation Complete! 🎉           ║"
