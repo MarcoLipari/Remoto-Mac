@@ -1,0 +1,18 @@
+cat >> ~/.zshrc << 'EOF'
+
+# Remoto aliases
+alias remoto-start='~/.remoto/start.sh'
+alias remoto-stop='~/.remoto/stop.sh'
+alias remoto-status='~/.remoto/status.sh'
+alias remoto-logs='tail -f ~/.remoto/logs/*.log | tail -50'
+alias remoto-autostart='~/.remoto/install-autostart.sh'
+
+EOF
+
+echo "✅ Aliases added! Restart terminal or run: source ~/.zshrc"
+echo ""
+echo "Now you can use:"
+echo "  remoto-start    - Start streaming"
+echo "  remoto-stop     - Stop all services"
+echo "  remoto-status   - Check what's running"
+echo "  remoto-logs     - View recent logs"
