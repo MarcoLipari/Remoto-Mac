@@ -31,6 +31,6 @@ See https://github.com/MarcoLipari/homebrew-remoto
 
 # Acknowledgements
 
-MediaMTX - RTSP/HLS server
-FFmpeg - Video encoding
-Cloudflare - Tunnel service
+- MediaMTX - RTSP/HLS server
+- FFmpeg - Video encoding
+- Cloudflare - Tunnel service
