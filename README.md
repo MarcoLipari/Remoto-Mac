@@ -22,6 +22,13 @@ brew "marcolipari-remoto"
 ## Documentation
 See https://github.com/MarcoLipari/homebrew-remoto
 
+# Roadmap
+
+## In Progress
+- [ ] Configuration options
+  - [ ] Support other available devices
+- [ ] Fix bug: remoto-log not working
+
 # Acknowledgements
 
 MediaMTX - RTSP/HLS server
