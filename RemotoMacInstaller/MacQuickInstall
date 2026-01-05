@@ -113,7 +113,7 @@ cleanup() {
     pkill -f "ffmpeg.*rtsp://127.0.0.1:8554/screen" 2>/dev/null
     pkill cloudflared 2>/dev/null
     brew services stop mediamtx 2>/dev/null
-    echo -e "${GREEN}✅ Cleanup complete${NC}"
+    echo -e "${GREEN}Services Stopped.${NC}"
     exit 0
 }
 
@@ -125,7 +125,7 @@ brew services start mediamtx
 sleep 3
 
 # Auto-detect display (screens only, not cameras)
-echo -e "${GREEN}🖥️  Auto-detecting displays...${NC}"
+echo -e "${GREEN}  Auto-detecting displays...${NC}"
 DISPLAY_LIST=$(ffmpeg -f avfoundation -list_devices true -i "" 2>&1 | grep -A 20 "AVFoundation video devices")
 
 # Filter for screens only (they contain "Capture screen" in their description)
@@ -141,7 +141,7 @@ for num in 1 0 2 3; do
     if echo "$SCREEN_DEVICES" | grep -q "\[$num\].*Capture screen"; then
         DISPLAY_NUM=$num
         SCREEN_NAME=$(echo "$SCREEN_DEVICES" | grep "\[$num\]" | sed 's/.*Capture screen //' | sed 's/\[.*//')
-        echo -e "${GREEN}✅ Using display $DISPLAY_NUM: $SCREEN_NAME${NC}"
+        echo -e "${GREEN} Using display $DISPLAY_NUM: $SCREEN_NAME${NC}"
         break
     fi
 done
@@ -154,7 +154,7 @@ if [ -z "$DISPLAY_NUM" ]; then
 fi
 
 # Start FFmpeg in background
-echo -e "${GREEN}🎥 Starting screen capture...${NC}"
+echo -e "${GREEN} Starting screen capture...${NC}"
 
 # Try hardware encoder first
 ffmpeg -f avfoundation -pixel_format nv12 -framerate 30 -i "$DISPLAY_NUM" \
@@ -196,7 +196,7 @@ cloudflared tunnel --url http://localhost:8888 > "$TUNNEL_OUTPUT" 2>&1 &
 CLOUDFLARED_PID=$!
 
 # Wait for tunnel URL
-echo -e "${YELLOW}⏳ Waiting for tunnel URL...${NC}"
+echo -e "${YELLOW} Waiting for tunnel URL...${NC}"
 COUNTER=0
 while [ $COUNTER -lt 30 ]; do
     if grep -q "https://.*\.trycloudflare\.com" "$TUNNEL_OUTPUT"; then
@@ -222,7 +222,7 @@ echo -e "${YELLOW}📋 This URL has been copied to your clipboard!${NC}"
 echo ""
 echo -e "Paste this URL in the frontend config 'Livestream URL' field"
 echo ""
-echo -e "${YELLOW}💡 Press Ctrl+C to stop all services${NC}"
+echo -e "${YELLOW} Press Ctrl+C to stop all services${NC}"
 echo -e "${YELLOW}📝 Logs: $LOG_FILE${NC}"
 echo ""
 
